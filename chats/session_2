@@ -1,0 +1,52 @@
+#Session_2_Discussion
+ownly-bot4/17/2025, 10:24 AM
+#Session_2_Discussion was created by /ndn/edu/ucla/g/stheera
+
+/ndn/edu/ucla/g/stheera4/17/2025, 10:24 AM
+SASW, Secure and Automated Workflows
+
+/ndn/com/operantnetworks/andrew.bartels4/17/2025, 10:38 AM
+Brilliant work. I'm very interested in how to efficiently pin scheduling to a local geographic area, for some locally efficiency.
+
+/ndn/net/pollere/nichols4/17/2025, 10:39 AM
+Perhaps if the identity includes geographic area?
+
+/ndn/com/operantnetworks/andrew.bartels4/17/2025, 10:41 AM
+Maybe! Also eventually if multiple scheduled resources take on the task, there would need to be a way to correlate independent compute results.
+
+/ndn/com/tatacommunications/tushar.sood4/17/2025, 10:46 AM
+Nice Work.. Thanks!.. However, Tasks DAG could be complex, specially with Genomic studies.. Would like to look (Contribute) into performance stats (and contribute for optimization).. for dense DAGs..
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 10:53 AM
+(I thought we were still in sessions 1? I suppose this one is created for session 2, the panel)
+
+/ndn/net/pollere/nichols4/17/2025, 10:54 AM
+Aha, thanks for pointing this out Lixia. I think perhaps we were misled because the discussion popped up when the speaker going going
+
+/ndn/edu/ucla/g/stheera4/17/2025, 11:10 AM
+Oops, sorry for the confusion. Section 2 starts in the afternoon. Section 2: Invited Talks: Looking into the Big Picture Internet
+
+/ndn/edu/ucla/g/stheera4/17/2025, 11:11 AM
+Just realized I put it in the wrong channel
+
+/ndn/edu/ucla/g/bradlowe4/17/2025, 2:06 PM
+Session 2 starting now?
+
+/ndn/edu/ucla/g/stheera4/17/2025, 2:07 PM
+Yes
+
+/ndn/edu/ucla/g/stheera4/17/2025, 2:34 PM
+https://www.tft.ucla.edu/events/remap-xanadu/
+
+/ndn/edu/ucla/jzhi4/17/2025, 2:35 PM
+Would be interesting to see if there is a way to connect traditional cloud (e.g., to continue to use AWS Sagemaker or cloud-based generative models) to NDN through some sort of connector!
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 4:04 PM
+please follow NDNComm Schedule (on Ownly) for break time (it's really convenient to have the schedule online which can be dynamically adjusted)
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 4:25 PM
+Geoff already left the meeting: my comment about disagreeing with half of his talk is a bit joking. Seriously, not disagreement but additional interpretations on the observations Geoff made: DNS names are ruling the internet communications.
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 5:49 AM
+Website schedule needs to sync from Ownly.
+

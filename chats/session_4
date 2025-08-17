@@ -1,0 +1,112 @@
+#Session_4_discussion
+
+ownly-bot4/18/2025, 9:11 AM
+#Session_4_discussion was created by /ndn/edu/ucla/cs/lixia
+
+/ndn/edu/ucla/cs/lixia4/18/2025, 9:14 AM
+zoom crash?
+
+/ndn/edu/memphis/awlane4/18/2025, 9:27 AM
+Is the Chrome extension portable to Firefox? I know they have fairly strong overlap in API but I'm not familiar if that extends to the dev tool integrations
+
+/ndn/edu/ucla/g/bradlowe4/18/2025, 9:29 AM
+Are there any notable NDN tools (or teaching tools) that weren't mentioned in this presentation?
+
+/ndn/com/gmail/bitmxy4/18/2025, 9:29 AM
+No for Firefox I guess... For now only Chrome and Edge are well supported
+
+/ndn/com/operantnetworks/andrew.bartels4/18/2025, 9:29 AM
+Any plans for extending NDN to mobile apps, someday?
+
+/ndn/edu/ucla/cs/lixia4/18/2025, 9:34 AM
+extending NDN to mobile apps: yes, just a manpower question
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 9:41 AM
+    Are there any notable NDN tools (or teaching tools) that weren't mentioned in this presentation?
+
+https://yoursunny.com/p/ndn-prefix-reach/ Distributed ndnping. Three probe hosts send an Interest to each testbed router, to check whether it can reach the destination prefix via this router. It's complicated to explain, so that I took it out.
+
+https://docs.named-data.net/NFD/24.07/manpages/ndn-autoconfig.html ndn-autoconfig, establish a connection to NDN router. It only supports NDN-FCH 2016 so that I skipped it.
+
+https://yoursunny.com/p/ndn6/map/ Network Map, with data taken from NDN-FCH 2021 backend. I think someone showed it yesterday.
+
+/ndn/edu/ucla/varunpatil4/18/2025, 9:41 AM
+    Is the Chrome extension portable to Firefox?
+
+It should be, I think Firefox supports all the APIs needed. Not tried though.
+
+/ndn/net/pollere/nichols4/18/2025, 10:02 AM
+    Any plans for extending NDN to mobile apps, someday?
+
+IMHO, NDN needs to be more broadcast-triendly before this can happen. We kind of saw this in yesterday's talk.
+
+/ndn/net/pollere/nichols4/18/2025, 10:04 AM
+Note that the implicit or explicit assumption seems to be that NDN forwarders are connected via "links" that are not broadcast. It stands out in the NDNplay figures.
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 10:08 AM
+    the implicit or explicit assumption seems to be that NDN forwarders are connected via "links" that are not broadcast
+
+For NDN-DPDK this is an explicit assumption. Some may argue that an Ethernet subnet is a broadcast medium, but my answer is that the Ethernet switch should be running NDN forwarder, so that every switchport is a unicast link.
+
+True broadcast links are rarely used. WiFi has broadcast but it's limited to 1Mbps.
+
+/ndn/net/pollere/nichols4/18/2025, 10:10 AM
+This is not correct. This can be configured differently.
+
+There are people trying to improve wifi broadcast so it's a good idea to be ahead of the curve
+
+/ndn/com/gmail/davidepesa4/18/2025, 10:13 AM
+Kathie is right. Also 802.11bc was released recently.
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 10:14 AM
+5G NR is unicast for most slots. I think it's possible to use some slots for broadcast, but only in gNB-to-UE direction. Not sure how this interplays with Interest-Data flow balance.
+
+/ndn/com/gmail/davidepesa4/18/2025, 10:14 AM
+    IMHO, NDN needs to be more broadcast-triendly before this can happen I agree. but then I wonder if current mobile platforms are a good fit for broadcast comms. As far as I know both iOS and Android severely limit what you can do with broadcast/multicast (without rooting the device)
+
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 10:16 AM
+Mentally strong people use PinePhone: https://pine64.org/devices/pinephone/ The WiFi radio is completely open. However, the LTE radio is still limited due to compliance requirements.
+
+/ndn/com/gmail/davidepesa4/18/2025, 10:16 AM
+@junxiao, in cellular networks, I'd suggest trying to use D2D communication, i.e. the PC5 interface (sidelink)
+
+I'm not mentally strong :(
+
+/ndn/net/pollere/nichols4/18/2025, 10:16 AM
+Me, either!
+
+What is D2D communication?
+
+/ndn/com/gmail/davidepesa4/18/2025, 10:18 AM
+sorry, device to device, direct communication without going through the gNB
+
+/ndn/net/pollere/nichols4/18/2025, 10:18 AM
+Ah, thanks
+
+/ndn/com/gmail/davidepesa4/18/2025, 10:20 AM
+mode 2 (in NR) and mode 4 (LTE) don't require any infrastructure support at all
+
+/ndn/net/pollere/nichols4/18/2025, 10:20 AM
+Yeah, the Interest-Data flow balance thing can be a problem in some cases. I don't have the "one for one" semantic in DCT. In my defense, Van suggested tossing it in favor of a sort of limited mathcing.
+
+matching (oops)
+
+/ndn/com/gmail/andreluizromanomadureira4/18/2025, 10:20 AM
+selective NACK has been a promise for dynamic broadcast transmission speed
+
+/ndn/com/gmail/andreluizromanomadureira4/18/2025, 10:22 AM
+one way to circunvent the Interest-Data flow is to use Unsolicited Data, but I dont know how much that change would alter the original NDN design
+
+/ndn/net/pollere/nichols4/18/2025, 10:27 AM
+Yeah, I'm not sure I'd recommend it for NDN. Defined-trust has a different semantic meaning. Rather than "this is what I'm interested in", it sends collection states "this is what I have" (using IBLT). So that does change a lot of things.
+
+/ndn/com/operantnetworks/randy.king4/18/2025, 10:47 AM
+Kathie Nichols may have much deeper thoughts on the trust schema transitions between zones, but she had to miss this talk and asked me to fill in a bit in her absence. Perhaps she will follow up when the slides become available.
+
+/ndn/edu/ucla/cs/lixia4/18/2025, 10:47 AM
+Leobino's last slide (with questions) looks really interesting. To me, the best way to find answers is to start with specific use cases, to understand, idealistically speaking, what each involved party wish to treat the data from other trust domains. From there we can get some hints. Then we look for another use case.
+
+/ndn/edu/ucla/cs/lixia4/18/2025, 11:39 AM
+there is a panel-2 channel for discussion
+

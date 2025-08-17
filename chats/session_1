@@ -1,0 +1,148 @@
+#Session_1_Discussion
+ownly-bot4/17/2025, 10:02 AM
+#Session_1_Discussion was created by /ndn/edu/arizona/cs/bzhang
+
+/ndn/edu/arizona/cs/bzhang4/17/2025, 10:03 AM
+Session 1: Decentralizing Internet Applications
+
+/ndn/com/operantnetworks/andrew.bartels4/17/2025, 10:09 AM
+Does this mean that you are successfully using NDN in a browser to strongly authenticate a browser user? Sounds pretty amazing!
+
+/ndn/edu/arizona/cs/bzhang4/17/2025, 10:10 AM
+Yes!
+
+/ndn/com/operantnetworks/andrew.bartels4/17/2025, 10:10 AM
+This is ground breaking
+
+/ndn/net/pollere/nichols4/17/2025, 10:13 AM
+Do identity certs have a lifetime? They are good across ownly, not just for a particular workspace, correct?
+
+Do encryption keys get updated?
+
+/ndn/com/operantnetworks/randy.king4/17/2025, 10:13 AM
+Is the security tied to the browser instance on the specific machine? If a user switches to a new machine, the invitation process and MFA is repeated?
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 10:20 AM
+yes identity certs have a lifetime. Ownly uses app-specific certs for each instance (least privilige)
+
+/ndn/edu/ucla/cs/adam4/17/2025, 10:21 AM
+The cert you obtained when joining ownly via the pin code allows you to publish data to the testbed. You create an application cert, signed by your testbed cert, to publish to the sync group. Your app cert is tied to individual ownly workspaces via "Invite" data, which the owner of the workspace creates
+
+/ndn/com/operantnetworks/andrew.bartels4/17/2025, 10:21 AM
+One more question - is there a policy manger somewhere, or are the policies managed entirely via LightVerSec?
+
+/ndn/edu/ucla/cs/adam4/17/2025, 10:22 AM
+entirely with LightVerSec
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 10:22 AM
+"publish data to the testbed": really publish to the group. Adam meant there is security logic that the testbed forwards your packets
+
+/ndn/edu/ucla/cs/adam4/17/2025, 10:23 AM
+yes, thanks for clarifying
+
+/ndn/com/a2labs/tatalay4/17/2025, 10:25 AM
+I think this is as close as one comes to an MVP! The issue is, whenever someone builds such a product, how does one convince the owners of existing products that this is better? From the perspective of a non-technical person, the functionality is comparable to "Slack" as Dr. Zhang stated at her opening speech. So, what is the 30 second elevator pitch to a businessman to sell this?
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 10:29 AM
+i) it may not be easy to convince people to move away from an existing app that they already use. People looking for new solutions are more likely first movers ii) As the first talk explained: ownly is pure peer-to-peer, no server, no intermediaries in the middle. all data stored at the user ends. The network only forwards packets by names.
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 10:31 AM
+one IETF colleague heard about Ownly and said to me: let me know when your new tool stops crashing, then I'll consider moving all my internet drafts to it. I dont like the fact that (some big company) may peek into what I'm working on.
+
+/ndn/com/a2labs/tatalay4/17/2025, 10:33 AM
+so an opener like "Are you tired of Big Brother(s) looking over your shoulder?" :) That sounds good
+
+/ndn/edu/arizona/shijunxiao4/17/2025, 10:33 AM
+
+    The network only forwards packets by names.
+
+The repo, as part of the network, also persists the data. No repo and the workspace would disappear when the last member disconnects.
+
+/ndn/edu/ucla/varunpatil4/17/2025, 10:34 AM
+Yes, my take on why use this - control power and data sovereignty. Google / Slack can always kick you off (or effectively do it, by increasing costs). Plus nobody can use your data anymore.
+
+/ndn/com/operantnetworks/randy.king4/17/2025, 10:34 AM
+One way to think about it is that one often prototypes a new technology to build a version of an existing app. that rarely results in a compelling reason to change that particular app. Instead, if all goes well, you notice advantages in the new tech that enables new applications. So what is so special about this might be, if I understood correctly, the ability to make a web browser a trusted NDN identity. That must enable a billion new ideas, right?
+
+/ndn/edu/ucla/varunpatil4/17/2025, 10:35 AM
+    No repo and the workspace would disappear when the last member disconnects. I'll say last member "loses all data", rather than disconnect (it's not about connectivity). Just to note, Ownly does also run in a headless mode - you can start a instance somewhere that will back up your data (or just run repo yourself). In the end someone needs to store the data (but that doesn't mean they need to have control power)
+
+
+/ndn/edu/ucla/g/bradlowe4/17/2025, 10:38 AM
+Is everyone here familiar with repo?
+
+/ndn/edu/ucla/varunpatil4/17/2025, 10:39 AM
+Agree @randy - this is goal of building all the library support. One one - there is still some argument for switching to this kind of app for workspace use. The French government recently funded a similar effort (though still server based) to create a data sovereign workspace - https://docs.numerique.gouv.fr
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 10:59 AM
+I copied the following here, just to put all session 1 discussion together
+
+
+/ndn/net/pollere/nichols4/17/2025, 10:58 AM When you are authorizing "who" can see your data, is "who" a particular individual or is there some way to designate a "class" or "attribute" of users with whom to share?
+/ndn/net/pollere/nichols4/17/2025, 11:19 AM
+This is a good thought piece, Tianyuan. I think two further things to think about are: 1) in such models are we sending data to someone or are we just making it available to particular types of identities? and 2) you might consider robustness under connectivity failures as another important property/goal of decentralization
+
+/ndn/net/pollere/nichols4/17/2025, 11:23 AM
+PGP was a way to let us secure our own emails but it doesn't get used enough. Old-timers remember signing parties.
+
+/ndn/com/operantnetworks/randy.king4/17/2025, 11:28 AM
+One aspect is the rise of non-human identities and who owns that ID silo? They will vastly outnumber humans and become dominant as AI agents are further developed
+
+/ndn/net/pollere/nichols4/17/2025, 12:15 PM
+I think both humans and things should think carefully about whether they need a global identity and, if so, do they really want to use that identity directly everywhere? I like the use of domain-specific identities that may or may not tie in some way to a "global" id
+
+/ndn/com/operantnetworks/randy.king4/17/2025, 12:23 PM
+I think Kathie's model fits commercial realities better. A single global identity that is self-owned is difficult to build commercial value upon and doesn't fit human needs perfectly. Most of us probably have two emails and thus idenitiy silos, a work and a personal one. If I change jobs, my personal email
+
+
+shouldn't change. Curious how this fact affects the way to build linked meaningful but controllable idneities.
+/ndn/net/pollere/nichols4/17/2025, 12:30 PM
+I envision a tool that can go from DIDs and verifiable credentials into an identity chain for a particular domain. Note "envision" != "create/code"
+
+/ndn/net/pollere/nichols4/17/2025, 12:32 PM
+The certificate I got from the NDNCERT CA says it is "self" signed; I thought it was signed by the ownly TA? Can someone clarify?
+
+/ndn/org/jeswr/jesse4/17/2025, 12:43 PM
+Some links for Solid:
+
+
+    Links to Solid Community forum channels https://solidproject.org/community - I encourage you to join - especially the Matrix channels!
+    Decentralized Identity Foundation that I mentioned earlier as well https://identity.foundation since I brought that up in the discussion
+
+/ndn/edu/ucla/jzhi4/17/2025, 12:47 PM
+Hi, how did you get to the view to see that the NDNCERT CA is self-signed? I believe it should be signed by the NDNCERT CA
+
+/ndn/edu/ucla/cs/adam4/17/2025, 12:47 PM
+^ yes, I think yours should be signed by the /ndn/CA issuer
+
+/ndn/net/pollere/nichols4/17/2025, 12:48 PM
+Just looking at what I got from the NDNCERT robot: from NDNCERT CA /ndn. Certificate Name: /ndn/net/pollere/nichols/KEY//self/v=1744909044815 and isn't that "self" in the key locator field if I recall correctly?
+
+/ndn/net/pollere/nichols4/17/2025, 12:49 PM
+Is this a cert generated from my email, that is I'm signing the request not the identity?
+
+/ndn/edu/ucla/cs/adam4/17/2025, 12:54 PM
+That's what is used to generate a CSR to send to the /ndn CA. you were issued a cert with "NDNCERT" instead of "self" for that one component in the name. The key locator field is in the data itself, not the name
+
+/ndn/net/pollere/nichols4/17/2025, 12:56 PM
+okay
+
+/ndn/edu/ucla/cs/adam4/17/2025, 12:56 PM
+but yes, that's the cert issued based on your email + pin challenge
+
+not the "self" one, the "NDNCERT" one
+/ndn/edu/ucla/cs/adam4/17/2025, 1:03 PM
+for example, I have certs with these two names, one being the self-signed and one that I obtained from the ucla site CA: ├── /ndn/edu/ucla/cs/adam/KEY/o%AC%B8%FC%D0%9EF1/self/v=1738470945009 └─* /ndn/edu/ucla/cs/adam/KEY/o%AC%B8%FC%D0%9EF1/NDNCERT/v=1738470956304 the browser will fetch "Invite" data for the workspace and attach it to a cert signed by that second cert (so it's app-specific). when I publish data to this workspace, others can verify that I am allowed to do so based on the cert+invite
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 1:07 PM
+some after panel discussion to report here: for apps rely on servers, one first question: who will provide that server? (remember ownly is serverless).
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 1:09 PM
+observations from other decentralized apps centered on servers: there seems an observable trend that users tend to flock to the same server ...
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 1:10 PM
+the panel's goal is to stimulate open-ended discussions, to collectively drive our understanding forward
+
+/ndn/edu/ucla/varunpatil4/17/2025, 3:51 PM
+Pointer to slides - https://docs.google.com/presentation/d/1YvKzBrSIuw1FlD4pL9f2knfz0tLOGvBD2s9u7k6q5Tk/edit?usp=sharing
+

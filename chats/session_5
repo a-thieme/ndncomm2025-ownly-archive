@@ -1,0 +1,102 @@
+#Session_5_Discussion
+
+ownly-bot4/18/2025, 1:33 PM
+#Session_5_Discussion was created by /ndn/edu/ucla/g/bradlowe
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 1:43 PM
+It appears that ndnSIM has ceased to be updated. This would bring more problems if one develops for ndnSIM and tries to port to NFD. Maybe it's time to retire ndnSIM and recommend everyone to use Mini-NDN?
+
+/ndn/edu/memphis/awlane4/18/2025, 1:47 PM
+Sim's main benefit is running at faster than realtime which is not something that I think is easily accomplished in Mini-NDN/Mininet. However, I do agree that it seems a lot of work gets "stranded" because it requires someone to port from those bindings; anything that can run in Mini-NDN should be able to run on the host system.
+
+/ndn/edu/memphis/awlane4/18/2025, 1:49 PM
+I am hoping we can add a GUI frontend which may help introduce more people to Mini-NDN. I wonder how much of the adoption question is inertia with people more familiar with NDNSim.
+
+Well, integrate with existing ones (NDN-Play) from the default install
+
+/ndn/com/gmail/davidepesa4/18/2025, 1:51 PM
+there is some overlap between minindn and ndnsim but not 100%, so the former cannot fully replace the latter
+
+/ndn/edu/memphis/awlane4/18/2025, 1:53 PM
+This will also be a bigger question if NDNd does become the "default" forwarder, I'm not intimately familiar with NS-3 but I do not know if the existing bindings can be tied to the Golang code
+
+/ndn/edu/ucla/cs/lixia4/18/2025, 1:54 PM
+at least in scaling, ndnSIM can still run more nodes than miniNDN
+
+/ndn/edu/memphis/awlane4/18/2025, 1:55 PM
+That ties into the realtime issue; even w/o security enabled we still need sufficient resources to run every NFD/NLSR/etc instance simultaneously
+
+/ndn/edu/ucla/varunpatil4/18/2025, 1:56 PM
+    Sim's main benefit is running at faster than realtime Faster or slower ... I agree with Davide here, we can't abandon ndnSIM
+
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 2:02 PM
+    This will also be a bigger question if NDNd does become the "default" forwarder, I'm not intimately familiar with NS-3 but I do not know if the existing bindings can be tied to the Golang code
+
+Go can interact with C, but not with C++. Thus, it's screwed.
+
+/ndn/edu/ucla/varunpatil4/18/2025, 2:16 PM
+NDNd forwarding behavior (at least right now) is the same as NFD, so this wouldn't matter. The (not new) constraint is the app has to be written in ndn-cxx (but this has nothing to do with the forwarder)
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 2:16 PM
+You can run a GlobalPing probe container, to earn 150 credits per day. These credits can be pooled and used in the future when you need more.
+
+/ndn/edu/ucla/cs/lixia4/18/2025, 2:17 PM
+shijunxiao: earning 150 credits from whom?
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 2:18 PM
+GlobalPing system grants 150 credits per day per probe.
+
+https://globalping.io/credits "host a probe"
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 2:23 PM
+The drawback of re-inventing Globalping within your own infrastructure is that, you cannot effectively diagnose inter-AS routing issues. Your own ASN works perfectly, but hosts in other networks cannot reach you.
+
+The unique benefit of Globalping and RIPE ATLAS is that they provide probes in a large variety of network environments, so that you can run tests from many different sources.
+
+/ndn/org/mosko/marc4/18/2025, 2:28 PM
+Did you consider using MQ with named queues?
+
+/ndn/org/mosko/marc4/18/2025, 2:29 PM
+message queues
+
+/ndn/edu/ucla/varunpatil4/18/2025, 2:31 PM
+My understanding - MQ needs centralized message brokers and this is highly undesirable in this case
+
+The infrastructure they're trying to monitor is highly distributed, and these brokers may become unreachable
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 2:37 PM
+Is there a hardware acceleration device that can help with the Rabin fingerprinting?
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 2:46 PM
+I actually made a variant of this for CCNx 0.x during Content Addressable class: https://github.com/yoursunny/carepo All the deduplicated segments have a common prefix ccn:/%C1.R.SHA256 followed by the SHA256 hash of the payload (not Data packet). The difficulty I ran into is that the network would not know where to forward the Interests, so that I ended up limiting the deduplication to be used in local area networks only, by broadcasting the Interests.
+
+Rabin fingerprinting is effective for certain binaries like the Ubuntu ISO images across multiple versions.
+
+/ndn/edu/ucla/cs/lixia4/18/2025, 2:50 PM
+if the name is sementic-less, how would one manage security policies?
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 2:59 PM
+FLIC's proposed NDN naming looks OK, but I'm very confused on the manifest encryption.
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 3:01 PM
+NDN has two encryption schemes that can apply to any datasets. I don't see a need to invent another encryption scheme for FLIC-NDN.
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 3:03 PM
+RSA-CCM is not implementable in NDNts, because Web Crypto API does not have this algorithm.
+
+/ndn/net/pollere/nichols4/18/2025, 3:05 PM
+Picking one crypto mechanism is a sure path to obsolesence. Modularity is your friend.
+
+/ndn/edu/arizona/shijunxiao4/18/2025, 3:06 PM
+Web Crypto is growing though. They have Ed25519 now.
+
+/ndn/org/mosko/marc4/18/2025, 3:13 PM
+To elaborate on the CCNx 0.x experience, yes I don't think it would work well in 0.x. In CCNx 1.0, nameless objects allow an Interest to have a Locator name so it can be routed efficiently. The rule is, if a content object has no name, it matches any name in the Interest, but it must also match the ContentObjectHashRestriction (which is a separate Interest field, not part of the name). That all said, I think the PREFIX mode of naming seems possible as it's a much smaller overhead than I estimated (at least for the short names I used).
+
+/ndn/com/operantnetworks/andrew.bartels4/18/2025, 4:01 PM
+Cross compiling is necessary to a wide spread commercial roll out. Just my 2 cents.
+
+/ndn/com/gmail/davidepesa4/18/2025, 4:41 PM
+@andrew, I don't disagree, it's more of a "we'll cross that bridge when we get there" kind of situation for me
+

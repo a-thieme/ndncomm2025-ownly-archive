@@ -1,0 +1,14 @@
+#Panel_2_Security
+
+ownly-bot4/18/2025, 10:25 AM
+#Panel_2_Security was created by /ndn/edu/ucla/cs/lixia
+
+/ndn/com/operantnetworks/andrew.bartels4/18/2025, 11:59 AM
+I echo Randy's prior comments there. We can move NDN forward into industry quickly. Also to scale, we need a better distributed trust capability than legacy PKI.
+
+/ndn/com/operantnetworks/andrew.bartels4/18/2025, 12:07 PM
+Yes, that is the nature of my question.
+
+/ndn/com/operantnetworks/andrew.bartels4/18/2025, 12:31 PM
+Probably also add sone kind of provenance to that, as already discussed, possibly scored by AI? Very nicely stated.
+

@@ -1,0 +1,23 @@
+#3_Solid_discussion
+ownly-bot4/17/2025, 10:45 AM
+
+#3_Solid_discussion was created by /ndn/edu/arizona/cs/bzhang
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 10:54 AM
+bechuan we are still in session 1 right
+
+/ndn/net/pollere/nichols4/17/2025, 10:58 AM
+When you are authorizing "who" can see your data, is "who" a particular individual or is there some way to designate a "class" or "attribute" of users with whom to share?
+
+/ndn/org/jeswr/jesse4/17/2025, 12:43 PM
+Some links for Solid:
+
+    Links to Solid Community forum channels https://solidproject.org/community - I encourage you to join - especially the Matrix channels!
+    Decentralized Identity Foundation that I mentioned earlier as well https://identity.foundation since I brought that up in discussion
+
+/ndn/com/gmail/bitmxy4/17/2025, 1:01 PM
+I have a question: if we design a group chatroom over SOLID, whose Pod(s) should the chat data go? Is it that everyone host his own message and then link them using LinkedData, or that all chat messages go into one Pod like a traditional chatroom?
+
+/ndn/com/protonmail/cxres%2Bndn4/17/2025, 10:27 PM
+@bitmxy This has been discussed, for example, in Solid OS. What you suggest is one option. Another would be the Telegram model where both parties maintain chat histories in their respective stores as well as links to other's messages (To ensure you do not lose the messages in the circumstance the other person decides to delete it).
+

@@ -1,0 +1,49 @@
+#Session_3_Discussion
+
+ownly-bot4/17/2025, 2:04 PM
+#Session_3_Discussion was created by /ndn/edu/ucla/cs/tianyuan
+
+/ndn/edu/ucla/cs/tianyuan4/17/2025, 2:05 PM
+Session discussions of "NDN Forwarding and Routing"
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 4:47 PM
+
+I brought Andrew Bartels question from zoom to here: Andrew Bartels to Everyone (Apr 17, 2025, 4:44 PM) Could you apply this onto a mixed network, including cellular networks where there might be data limits?
+
+I did test the basic functionality of NDNd+dv on AS200690, but decided that it's not ready for worldwide deployment. The main missing feature is security validation of prefix registration commands.
+
+/ndn/edu/ucla/cs/lixia4/17/2025, 4:50 PM
+yes ndn-dv can be applied to mixed network. it is better suited for cellular with data limit than link-state given distance vector can have much lower overhead. A different version of distance vector, landmark routing, can further reduce overhead significantly.
+
+/ndn/edu/arizona/shijunxiao4/17/2025, 4:52 PM
+I never understood the concept of engine.
+
+/ndn/edu/arizona/shijunxiao4/17/2025, 4:54 PM
+It appears that NDNd stdlib wanted to support multiple codecs, but this idea doesn't work well.
+
+/ndn/edu/arizona/shijunxiao4/17/2025, 4:58 PM
+We don't trust benchmarks performed on a single machine. Gotta use separate hosts for consumer - forwarder - producer.
+
+/ndn/edu/ucla/varunpatil4/17/2025, 5:17 PM
+True, this benchmark was just trying to compare the original 2021 numbers (but those are likely not right anyway). The benchmark is mostly just measuring forwarding rate.
+
+Codecs?
+
+/ndn/edu/arizona/shijunxiao4/17/2025, 5:18 PM
+    Codecs?
+
+spec_2020 spec_2022 ...
+
+/ndn/com/gmail/yektakocaogullar4/17/2025, 5:48 PM
+Will there be a feature in the future to mention someone (i.e. @ someone) in an ownly chat room?
+
+oh, my profile icon is sad
+
+/ndn/com/gmail/davidepesa4/17/2025, 5:51 PM
+well, mine is sick so...
+
+/ndn/edu/arizona/shijunxiao4/17/2025, 5:52 PM
+I have the biggest smile.
+
+Ownly designer doesn't want to use Gravatar, the industry standard of email-based profile pictures.
+
